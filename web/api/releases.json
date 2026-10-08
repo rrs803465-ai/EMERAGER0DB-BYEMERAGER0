@@ -1,0 +1,15 @@
+{
+  "latest": "0.1.0-beta",
+  "release_url": "https://github.com/rrs803465-ai/EMERAGER0DB-BYEMERAGER0/releases/tag/v0.1.0-beta",
+  "checksums": "https://github.com/rrs803465-ai/EMERAGER0DB-BYEMERAGER0/releases/download/v0.1.0-beta/SHA256SUMS",
+  "downloads": {
+    "windows-x86_64": "https://github.com/rrs803465-ai/EMERAGER0DB-BYEMERAGER0/releases/download/v0.1.0-beta/Emerager0DB-windows-x86_64.exe",
+    "linux-x86_64": "https://github.com/rrs803465-ai/EMERAGER0DB-BYEMERAGER0/releases/download/v0.1.0-beta/Emerager0DB-linux-x86_64",
+    "linux-arm64": "https://github.com/rrs803465-ai/EMERAGER0DB-BYEMERAGER0/releases/download/v0.1.0-beta/Emerager0DB-linux-arm64",
+    "macos-x86_64": "https://github.com/rrs803465-ai/EMERAGER0DB-BYEMERAGER0/releases/download/v0.1.0-beta/Emerager0DB-macos-x86_64",
+    "macos-arm64": "https://github.com/rrs803465-ai/EMERAGER0DB-BYEMERAGER0/releases/download/v0.1.0-beta/Emerager0DB-macos-arm64"
+  },
+  "releases": [
+    { "version": "0.1.0-beta", "date": "2026-10-08", "status": "beta" }
+  ]
+}
