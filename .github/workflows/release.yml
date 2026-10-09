@@ -1,0 +1,73 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-latest
+            label: windows-x86_64
+          - runner: ubuntu-latest
+            label: linux-x86_64
+          - runner: ubuntu-24.04-arm
+            label: linux-arm64
+          - runner: macos-13
+            label: macos-x86_64
+          - runner: macos-14
+            label: macos-arm64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test
+        run: |
+          python -m pip install pytest
+          python -m pytest -q
+
+      - name: Build executable
+        run: |
+          python -m pip install pyinstaller
+          python scripts/build_release.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.label }}
+          path: |
+            dist/Emerager0DB-*
+            dist/SHA256SUMS.*
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Merge checksums
+        run: |
+          cat artifacts/SHA256SUMS.* > SHA256SUMS
+          rm artifacts/SHA256SUMS.*
+          cat SHA256SUMS
+
+      - name: Attach files to the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "Emerager0DB $TAG" --prerelease --notes "See docs/updating.md for how installers and updates verify these files."
+          gh release upload "$TAG" artifacts/* SHA256SUMS --clobber 
