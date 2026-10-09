@@ -67,6 +67,7 @@ jobs:
       - name: Attach files to the release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
           TAG: ${{ github.ref_name }}
         run: |
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "Emerager0DB $TAG" --prerelease --notes "See docs/updating.md for how installers and updates verify these files."
